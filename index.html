@@ -45,9 +45,135 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-
     
     <style>
+        /* Additional Footer Styles from about.html */
+        .footer-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .arrow-hover {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-link:hover .arrow-hover {
+            transform: translateX(2px);
+        }
+        
+        .footer-link::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #237227, #FFAA00);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-link:hover::before {
+            width: 100%;
+        }
+        
+        .connect-item {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .connect-item span.relative {
+            display: inline-block;
+        }
+        
+        .connect-bar {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: linear-gradient(90deg, #237227, #FFAA00);
+            transition: width 0.3s ease;
+        }
+        
+        .connect-item:hover .connect-bar {
+            width: 100%;
+        }
+        
+        .hover-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-badge:hover {
+            background: linear-gradient(135deg, #237227, #519A66);
+            color: white !important;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(35, 114, 39, 0.2);
+        }
+        
+        .hover-badge:hover i {
+            color: white !important;
+        }
+        
+        .tech-badge {
+            background: linear-gradient(135deg, #e7f4ec, #d4f0e0);
+            color: #237227;
+            border: 1px solid rgba(35, 114, 39, 0.2);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+        
+        .tech-badge:hover {
+            background: linear-gradient(135deg, #237227, #519A66);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(35, 114, 39, 0.15);
+            border-color: transparent;
+        }
+        
+        .tech-badge:hover i {
+            color: white;
+        }
+        
+        .social-icon {
+            display: inline-block;
+        }
+        
+        .social-icon div {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulseRingBtn {
+            0% { box-shadow: 0 0 0 0 rgba(35, 114, 39, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(35, 114, 39, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(35, 114, 39, 0); }
+        }
+        
+        #scrollToTop.show {
+            display: flex;
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        #scrollToTop:hover {
+            animation: pulseRingBtn 1s infinite;
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .animate-toast {
+            animation: slideInRight 0.2s ease-out;
+            transition: all 0.2s ease;
+        }
+        
         /* Mobile Menu Styles */
         .mobile-menu {
             transform: translateX(-100%);
@@ -340,7 +466,7 @@
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <!-- Project cards remain same but mobile optimized -->
+                    <!-- Project 1 -->
                     <div class="premium-card overflow-hidden group project-card" data-aos="fade-up">
                         <div class="relative overflow-hidden h-48 sm:h-56">
                             <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=350&fit=crop" alt="E-Commerce Platform" class="project-image w-full h-full object-cover transition duration-500 group-hover:scale-110">
@@ -406,41 +532,246 @@
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">Let's Work Together</h2>
                 <p class="text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base px-4">Have a project in mind? Let's discuss how I can help bring your ideas to life.</p>
                 <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                    <a href="mailto:jackdev@example.com" class="bg-white text-[#237227] px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:shadow-lg transition flex items-center gap-2 text-sm sm:text-base">
+                    <a href="mailto:jackdev@example.com" class="bg-white text-[#237227] px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semiboid hover:shadow-lg transition flex items-center gap-2 text-sm sm:text-base">
                         <i class="fas fa-envelope"></i> jackdev@example.com
                     </a>
-                    <a href="#" target="_blank" class="border-2 border-white text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-[#237227] transition flex items-center gap-2 text-sm sm:text-base">
+                    <a href="https://github.com/JackDev-Hunt" target="_blank" class="border-2 border-white text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-[#237227] transition flex items-center gap-2 text-sm sm:text-base">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <a href="#" target="_blank" class="border-2 border-white text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-[#237227] transition flex items-center gap-2 text-sm sm:text-base">
+                    <a href="https://www.linkedin.com/in/md-jakaria-215884326" target="_blank" class="border-2 border-white text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-[#237227] transition flex items-center gap-2 text-sm sm:text-base">
                         <i class="fab fa-linkedin-in"></i> LinkedIn
                     </a>
                 </div>
             </div>
         </section>
         
-        <!-- Footer remains same but ensure mobile padding -->
+        <!-- ========== FOOTER (Updated from about.html) ========== -->
         <footer class="relative overflow-hidden bg-white dark:bg-gray-900">
-            <!-- Footer content same as before but with mobile optimizations -->
-            <div class="container mx-auto px-4 py-6 sm:py-8 relative z-10">
-                <!-- Footer content here -->
-                <div class="border-t border-[#92e1ba]/40 pt-4 mt-4">
-                    <div class="flex flex-col lg:flex-row justify-between items-center gap-3">
-                        <div class="text-[10px] sm:text-[11px] text-gray-600 dark:text-gray-400 text-center lg:text-left">
-                            <i class="fas fa-code mr-1 text-[#237227] text-[10px]"></i>
-                            © 2024 Jack Dev. All rights reserved.
+            <div class="container mx-auto px-4 py-8 relative z-10">
+                <!-- Top Section -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
+                    
+                    <!-- Brand Section -->
+                    <div class="space-y-2">
+                        <a href="index.html" class="group block cursor-pointer">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-lg flex items-center justify-center shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                                    <i class="fas fa-code text-[#FFD786] text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-base">
+                                        <span class="text-[#237227]">Dev</span>
+                                        <span class="text-gray-800 dark:text-white">Portfolio</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </a>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                            Creating exceptional digital experiences with Django & modern web technologies.
+                        </p>
+                        
+                        <!-- Trust Badges -->
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="hover-badge text-[10px] bg-white/70 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-700 dark:text-gray-300 border-l border-[#237227] transition-all duration-300 cursor-pointer">
+                                <i class="fas fa-check-circle text-[#FFAA00] text-[8px] mr-0.5"></i> 50+ Projects
+                            </span>
+                            <span class="hover-badge text-[10px] bg-white/70 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-700 dark:text-gray-300 border-l border-[#237227] transition-all duration-300 cursor-pointer">
+                                <i class="fas fa-smile text-[#FFAA00] text-[8px] mr-0.5"></i> 30+ Clients
+                            </span>
+                            <span class="hover-badge text-[10px] bg-white/70 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-700 dark:text-gray-300 border-l border-[#237227] transition-all duration-300 cursor-pointer">
+                                <i class="fas fa-clock text-[#FFAA00] text-[8px] mr-0.5"></i> 5+ Experience
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="font-semibold text-sm mb-2 relative inline-block text-gray-800 dark:text-white">
+                            Quick Links
+                            <span class="absolute -bottom-0.5 left-0 w-8 h-0.5 bg-[#FFAA00]"></span>
+                        </h4>
+                        <ul class="space-y-1.5">
+                            <li>
+                                <a href="index.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="about.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="projects.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    Projects
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contacts.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div>
+                        <h4 class="font-semibold text-sm mb-2 relative inline-block text-gray-800 dark:text-white">
+                            Services
+                            <span class="absolute -bottom-0.5 left-0 w-8 h-0.5 bg-[#FFAA00]"></span>
+                        </h4>
+                        <ul class="space-y-1.5">
+                            <li>
+                                <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    <i class="fab fa-python w-3 mr-1 text-[#519A66]"></i>
+                                    Django Dev
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    <i class="fas fa-mobile-alt w-3 mr-1 text-[#519A66]"></i>
+                                    Responsive Design
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    <i class="fas fa-palette w-3 mr-1 text-[#519A66]"></i>
+                                    Template Design
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    <i class="fab fa-css3-alt w-3 mr-1 text-[#519A66]"></i>
+                                    TailwindCSS
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
+                                    <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
+                                    <i class="fas fa-database w-3 mr-1 text-[#519A66]"></i>
+                                    API Dev
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Connect Section -->
+                    <div>
+                        <h4 class="font-semibold text-sm mb-2 relative inline-block text-gray-800 dark:text-white">
+                            Connect
+                            <span class="absolute -bottom-0.5 left-0 w-8 h-0.5 bg-[#FFAA00]"></span>
+                        </h4>
+                        
+                        <ul class="space-y-2 mb-3">
+                            <li class="connect-item flex items-center text-gray-600 dark:text-gray-400 group cursor-pointer text-xs transition-all duration-300 hover:text-[#237227]">
+                                <i class="fas fa-globe w-3 mr-2 text-[#237227]"></i>
+                                <span class="relative inline-block">
+                                    https://jackfolio.netlify.app/
+                                    <span class="connect-bar absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#237227] to-[#FFAA00] transition-all duration-300 group-hover:w-full"></span>
+                                </span>
+                            </li>
+                            
+                            <li class="connect-item flex items-center text-gray-600 dark:text-gray-400 group cursor-pointer text-xs transition-all duration-300 hover:text-[#237227]">
+                                <i class="fas fa-envelope w-3 mr-2 text-[#237227]"></i>
+                                <span class="relative inline-block">
+                                    contact@devportfolio.com
+                                    <span class="connect-bar absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#237227] to-[#FFAA00] transition-all duration-300 group-hover:w-full"></span>
+                                </span>
+                            </li>
+                            
+                            <li class="connect-item flex items-center text-gray-600 dark:text-gray-400 group text-xs transition-all duration-300 hover:text-[#237227]">
+                                <i class="fab fa-github w-3 mr-2 text-[#237227]"></i>
+                                <span class="relative inline-block">
+                                    <a href="https://github.com/JackDev-Hunt" class="hover:text-[#237227] transition">github.com/JackDev-Hunt</a>
+                                    <span class="connect-bar absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#237227] to-[#FFAA00] transition-all duration-300 group-hover:w-full"></span>
+                                </span>
+                            </li>
+                            
+                            <li class="connect-item flex items-center text-gray-600 dark:text-gray-400 group cursor-pointer text-xs transition-all duration-300 hover:text-[#237227]">
+                                <i class="fas fa-phone-alt w-3 mr-2 text-[#237227]"></i>
+                                <span class="relative inline-block">
+                                    +880 1324 870026
+                                    <span class="connect-bar absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#237227] to-[#FFAA00] transition-all duration-300 group-hover:w-full"></span>
+                                </span>
+                            </li>
+                        </ul>
+                        
+                        <div class="flex space-x-2 mb-3">
+                            <a href="#" class="social-icon group">
+                                <div class="w-7 h-7 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#237227] group-hover:to-[#519A66] shadow-sm border border-gray-200 dark:border-gray-700">
+                                    <i class="fab fa-github text-gray-600 dark:text-gray-400 group-hover:text-white text-xs"></i>
+                                </div>
+                            </a>
+                            <a href="#" class="social-icon group">
+                                <div class="w-7 h-7 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#237227] group-hover:to-[#519A66] shadow-sm border border-gray-200 dark:border-gray-700">
+                                    <i class="fab fa-linkedin-in text-gray-600 dark:text-gray-400 group-hover:text-white text-xs"></i>
+                                </div>
+                            </a>
+                            <a href="#" class="social-icon group">
+                                <div class="w-7 h-7 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#237227] group-hover:to-[#519A66] shadow-sm border border-gray-200 dark:border-gray-700">
+                                    <i class="fab fa-twitter text-gray-600 dark:text-gray-400 group-hover:text-white text-xs"></i>
+                                </div>
+                            </a>
+                            <a href="#" class="social-icon group">
+                                <div class="w-7 h-7 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#237227] group-hover:to-[#519A66] shadow-sm border border-gray-200 dark:border-gray-700">
+                                    <i class="fab fa-dev text-gray-600 dark:text-gray-400 group-hover:text-white text-xs"></i>
+                                </div>
+                            </a>
                         </div>
                         
-                        <div class="flex space-x-4 sm:space-x-5 text-[10px] sm:text-[11px]">
-                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Privacy</a>
-                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Terms</a>
-                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Support</a>
+                        <div>
+                            <form method="post" action="#" class="relative" onsubmit="event.preventDefault(); handleNewsletter(this)">
+                                <input type="email" name="email" placeholder="Email" 
+                                    class="w-full px-3 py-1.5 text-xs rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#FFAA00] pr-8 transition">
+                                <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-[#237227] dark:text-[#92e1ba] hover:text-[#FFAA00] transition">
+                                    <i class="fas fa-paper-plane text-xs"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
                 
-                <button id="scrollToTop" class="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 bg-gradient-to-r from-[#237227] to-[#519A66] text-white w-8 h-8 sm:w-9 sm:h-9 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-110 hidden items-center justify-center z-50 group">
-                    <i class="fas fa-arrow-up text-xs sm:text-sm group-hover:-translate-y-0.5 transition"></i>
+                <!-- Bottom Bar -->
+                <div class="border-t border-[#92e1ba]/40 pt-3 mt-2">
+                    <div class="flex flex-col lg:flex-row justify-between items-center gap-3">
+                        <div class="text-[11px] text-gray-600 dark:text-gray-400 text-center lg:text-left">
+                            <i class="fas fa-code mr-1 text-[#237227] text-[10px]"></i>
+                            © 2026 Jack Dev. All rights reserved.
+                        </div>
+                        
+                        <div class="flex space-x-5 text-[11px]">
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Privacy</a>
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Terms & Conditions</a>
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Support</a>
+                        </div>
+                        
+                        <div class="flex flex-wrap justify-center items-center gap-1.5">
+                            <span class="tech-badge text-[10px] px-2.5 py-0.5 rounded-full flex items-center gap-1 transition-all duration-300 cursor-pointer">
+                                <i class="fab fa-python text-[10px]"></i>
+                                Django
+                            </span>
+                            <span class="tech-badge text-[10px] px-2.5 py-0.5 rounded-full flex items-center gap-1 transition-all duration-300 cursor-pointer">
+                                <i class="fab fa-js text-[10px]"></i>
+                                JavaScript
+                            </span>
+                            <span class="tech-badge text-[10px] px-2.5 py-0.5 rounded-full flex items-center gap-1 transition-all duration-300 cursor-pointer">
+                                <i class="fab fa-css3-alt text-[10px]"></i>
+                                TailwindCSS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="scrollToTop" class="fixed bottom-6 right-6 bg-gradient-to-r from-[#237227] to-[#519A66] text-white w-9 h-9 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-110 hidden items-center justify-center z-50 group">
+                    <i class="fas fa-arrow-up text-sm group-hover:-translate-y-0.5 transition"></i>
                 </button>
             </div>
         </footer>
@@ -450,8 +781,57 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
     
-    <!-- Hamburger Menu JavaScript -->
+    <!-- Additional JavaScript for Footer and Menu -->
     <script>
+        // Initialize AOS
+        AOS.init({ duration: 800, once: true, offset: 100 });
+        
+        // Scroll to Top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        if (scrollToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // Newsletter toast function
+        function handleNewsletter(form) {
+            const input = form.querySelector('input');
+            const button = form.querySelector('button');
+            if (input.value.trim()) {
+                const originalIcon = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin text-xs"></i>';
+                setTimeout(() => {
+                    button.innerHTML = originalIcon;
+                    input.value = '';
+                    showToast('✓ Subscribed!', 'success');
+                }, 800);
+            } else {
+                showToast('⚠ Enter email', 'error');
+            }
+        }
+        
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-20 right-4 z-50 px-3 py-1.5 rounded-lg shadow-md text-white text-xs animate-toast ${
+                type === 'success' ? 'bg-gradient-to-r from-[#237227] to-[#519A66]' : 'bg-gray-700'
+            }`;
+            toast.innerHTML = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                setTimeout(() => toast.remove(), 200);
+            }, 2000);
+        }
+        
         // Mobile Menu Functionality
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -463,34 +843,102 @@
             mobileMenu.classList.add('active');
             menuOverlay.classList.add('active');
             document.body.classList.add('menu-open');
-            hamburgerIcon.classList.remove('fa-bars');
-            hamburgerIcon.classList.add('fa-times');
+            if(hamburgerIcon) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-times');
+            }
         }
         
         function closeMenu() {
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
             document.body.classList.remove('menu-open');
-            hamburgerIcon.classList.remove('fa-times');
-            hamburgerIcon.classList.add('fa-bars');
+            if(hamburgerIcon) {
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+            }
         }
         
-        hamburgerBtn.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        });
+        if(hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
         
-        closeMenuBtn.addEventListener('click', closeMenu);
-        menuOverlay.addEventListener('click', closeMenu);
+        if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+        if(menuOverlay) menuOverlay.addEventListener('click', closeMenu);
         
         // Close menu when clicking on a link
         document.querySelectorAll('#mobileMenu a').forEach(link => {
             link.addEventListener('click', closeMenu);
         });
+        
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        if(themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+        }
+        
+        // Typing Animation
+        const texts = ["Django Developer", "Full Stack Engineer", "Python Expert", "UI/UX Designer", "Problem Solver"];
+        let textIndex = 0, charIndex = 0, isDeleting = false;
+        const typingElement = document.querySelector('.typing-text');
+        
+        function typeEffect() {
+            if (!typingElement) return;
+            const currentText = texts[textIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, 2000);
+                return;
+            }
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(typeEffect, 500);
+                return;
+            }
+            setTimeout(typeEffect, isDeleting ? 50 : 100);
+        }
+        setTimeout(typeEffect, 500);
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
     </script>
-    
 </body>
 </html>
