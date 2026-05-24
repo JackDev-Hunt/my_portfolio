@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Skills & Expertise - Jack Dev's technical skills and professional expertise in Django, Python, Web Development">
-    <meta name="keywords" content="Skills, Django, Python, Web Development, TailwindCSS, JavaScript, Portfolio">
+    <meta name="description" content="Skills & Expertise - Jack Dev's technical skills in Django, Python, TailwindCSS and modern web technologies">
+    <meta name="keywords" content="Django, Python, TailwindCSS, JavaScript, PostgreSQL, REST API">
     <meta name="author" content="Jack Dev">
     
-    <title>Skills & Expertise | Jack Dev - Professional Developer</title>
+    <title>Skills | Jack Dev - Django Developer</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,18 +20,7 @@
                         primary: '#237227',
                         secondary: '#519A66',
                         accent: '#FFAA00',
-                        highlight: '#FFD786',
                     },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                    }
                 }
             }
         }
@@ -43,31 +32,269 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/skills.css">
-    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e7f4ec 0%, #faf8f6 25%, #e7f4ec 50%, #b0eacd 75%, #92e1ba 100%);
+            overflow-x: hidden;
+        }
+        
+        .dark body {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            overflow-y: auto;
+            padding: 80px 0 30px;
+        }
+        
+        .dark .mobile-menu {
+            background: #1f2937;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* Skill Card */
+        .skill-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(35, 114, 39, 0.1);
+            height: 100%;
+        }
+        
+        .dark .skill-card {
+            background: #1f2937;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(35, 114, 39, 0.15);
+            border-color: rgba(35, 114, 39, 0.3);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .dark .progress-bar {
+            background: #374151;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #237227, #519A66);
+            width: 0;
+            transition: width 1s ease-out;
+        }
+        
+        /* Tech Badge */
+        .tech-badge-simple {
+            padding: 12px 20px;
+            background: white;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(35, 114, 39, 0.1);
+            cursor: pointer;
+        }
+        
+        .dark .tech-badge-simple {
+            background: #1f2937;
+        }
+        
+        .tech-badge-simple:hover {
+            transform: translateY(-3px);
+            border-color: #237227;
+            box-shadow: 0 5px 15px rgba(35, 114, 39, 0.1);
+        }
+        
+        .tech-badge-simple i {
+            font-size: 2rem;
+            color: #237227;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .dark .tech-badge-simple i {
+            color: #92e1ba;
+        }
+        
+        .tech-badge-simple span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+        
+        .dark .tech-badge-simple span {
+            color: #9ca3af;
+        }
+        
+        /* Stat Card */
+        .stat-card {
+            text-align: center;
+            padding: 25px;
+            background: white;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .dark .stat-card {
+            background: #1f2937;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #237227;
+        }
+        
+        .dark .stat-number {
+            color: #92e1ba;
+        }
+        
+        /* CTA Button */
+        .btn-primary {
+            background: linear-gradient(135deg, #237227, #519A66);
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(35, 114, 39, 0.3);
+        }
+        
+        .btn-outline {
+            border: 2px solid #237227;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: #237227;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .dark .btn-outline {
+            border-color: #92e1ba;
+            color: #92e1ba;
+        }
+        
+        .btn-outline:hover {
+            background: #237227;
+            color: white;
+        }
+        
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #237227, #519A66);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-top.show {
+            display: flex;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .skill-card {
+                padding: 20px;
+            }
+            .stat-card {
+                padding: 15px;
+            }
+            .tech-badge-simple {
+                padding: 10px 15px;
+            }
+            .tech-badge-simple i {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
-<body class="antialiased">
+<body>
+    
+    <!-- Menu Overlay -->
+    <div id="menuOverlay" class="menu-overlay"></div>
     
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <a href="index.html" class="flex items-center space-x-2 group">
-                    <div class="w-10 h-10 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-105">
+                    <div class="w-10 h-10 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-xl flex items-center justify-center shadow-lg">
                         <i class="fas fa-code text-[#FFD786] text-xl"></i>
                     </div>
                     <span class="text-xl font-bold bg-gradient-to-r from-[#237227] to-[#FFAA00] bg-clip-text text-transparent">DevPortfolio</span>
                 </a>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium">Home</a>
-                    <a href="about.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium">About</a>
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition">Home</a>
+                    <a href="about.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition">About</a>
                     <a href="skills.html" class="text-[#237227] dark:text-[#92e1ba] font-semibold border-b-2 border-[#FFAA00] pb-0.5">Skills</a>
-                    <a href="projects.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium">Projects</a>
-                    <a href="contacts.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium">Contact</a>
+                    <a href="projects.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition">Projects</a>
+                    <a href="contacts.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition">Contact</a>
                 </div>
                 
                 <div class="flex items-center space-x-3">
@@ -76,680 +303,495 @@
                     </button>
                     
                     <a href="resume.pdf" download="Jack_Dev_Resume.pdf" 
-                       class="hidden md:flex items-center gap-2 bg-gradient-to-r from-[#237227] to-[#519A66] hover:from-[#1a5a1e] hover:to-[#3d7a4f] text-white px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                       class="hidden md:flex items-center gap-2 bg-gradient-to-r from-[#237227] to-[#519A66] text-white px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105">
                         <i class="fas fa-download text-sm"></i>
-                        <span>Resume</span>
+                        Resume
                     </a>
                     
-                    <button id="hamburgerBtn" class="md:hidden w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:scale-110 transition shadow-md">
+                    <button id="hamburgerBtn" class="md:hidden w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:scale-110 transition">
                         <i id="hamburgerIcon" class="fas fa-bars text-gray-700 dark:text-gray-300 text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
-
+    
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="mobile-menu">
-        <button id="closeMenuBtn" class="close-btn">
-            <i class="fas fa-times"></i>
+        <button id="closeMenuBtn" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+            <i class="fas fa-times text-gray-700 dark:text-gray-300"></i>
         </button>
-        <div class="mobile-nav-links">
-            <a href="index.html">🏠 Home</a>
-            <a href="about.html">👤 About</a>
-            <a href="skills.html">⚡ Skills</a>
-            <a href="projects.html">📁 Projects</a>
-            <a href="contacts.html">📞 Contact</a>
-        </div>
-        <a href="resume.pdf" download="Jack_Dev_Resume.pdf" class="mobile-resume-btn">
-            <i class="fas fa-download"></i>
-            Download Resume
-        </a>
-        <div class="mobile-social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="flex flex-col space-y-2 px-6">
+            <a href="index.html" class="py-3 text-gray-700 dark:text-gray-300 hover:text-[#237227] border-b border-gray-200 dark:border-gray-700">Home</a>
+            <a href="about.html" class="py-3 text-gray-700 dark:text-gray-300 hover:text-[#237227] border-b border-gray-200 dark:border-gray-700">About</a>
+            <a href="skills.html" class="py-3 text-[#237227] dark:text-[#92e1ba] font-semibold border-b border-gray-200 dark:border-gray-700">Skills</a>
+            <a href="projects.html" class="py-3 text-gray-700 dark:text-gray-300 hover:text-[#237227] border-b border-gray-200 dark:border-gray-700">Projects</a>
+            <a href="contacts.html" class="py-3 text-gray-700 dark:text-gray-300 hover:text-[#237227] border-b border-gray-200 dark:border-gray-700">Contact</a>
+            <a href="resume.pdf" download class="mt-4 bg-gradient-to-r from-[#237227] to-[#519A66] text-white py-3 rounded-full text-center">Download Resume</a>
         </div>
     </div>
-    <div id="menuOverlay" class="menu-overlay"></div>
-
-    <!-- Skills Hero Section -->
-    <section class="skills-hero">
-        <div class="hero-bg-decoration"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center" data-aos="fade-up">
-                <span class="hero-badge">My Expertise</span>
-                <h1 class="hero-title">Technical <span class="gradient-text">Skills</span></h1>
-                <div class="hero-divider"></div>
-                <p class="hero-description">
-                    Technologies and tools I master to build exceptional digital experiences
-                </p>
-            </div>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4">
+        <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
+            <span class="inline-block px-4 py-1 rounded-full bg-[#237227]/10 text-[#237227] dark:text-[#92e1ba] text-sm font-semibold mb-4">My Expertise</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
+                Technical <span class="bg-gradient-to-r from-[#237227] to-[#FFAA00] bg-clip-text text-transparent">Skills</span>
+            </h1>
+            <div class="w-20 h-1 bg-gradient-to-r from-[#237227] to-[#FFAA00] mx-auto mb-6"></div>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Technologies and tools I use to build modern web applications
+            </p>
         </div>
     </section>
-
-    <!-- Skills Categories Section -->
-    <section class="skills-categories">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            
+    
+    <!-- Skills Sections - 3 Columns -->
+    <section class="py-8 px-4">
+        <div class="container mx-auto max-w-6xl">
             <!-- Backend Skills -->
-            <div class="skills-category" data-aos="fade-up">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-server"></i>
+            <div class="mb-16" data-aos="fade-up">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-server text-white text-2xl"></i>
                     </div>
-                    <h2 class="category-title">Backend Development</h2>
-                    <p class="category-subtitle">Robust server-side technologies</p>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Backend Development</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Robust server-side technologies</p>
                 </div>
                 
-                <div class="skills-grid">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Python -->
                     <div class="skill-card">
-                        <div class="skill-icon python-bg">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Python</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar python-bar" data-width="95">95%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#3776AB] to-[#FFD43B] rounded-xl flex items-center justify-center">
+                                <i class="fab fa-python text-white text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Python</h3>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="95"></div>
                         </div>
                     </div>
                     
+                    <!-- Django -->
                     <div class="skill-card">
-                        <div class="skill-icon django-bg">
-                            <i class="fab fa-django"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Django</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar django-bar" data-width="92">92%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#092E20] to-[#44B78B] rounded-xl flex items-center justify-center">
+                                <i class="fab fa-django text-white text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Django</h3>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="92"></div>
                         </div>
                     </div>
                     
+                    <!-- DRF -->
                     <div class="skill-card">
-                        <div class="skill-icon drf-bg">
-                            <i class="fas fa-code-branch"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Django REST Framework</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar drf-bar" data-width="90">90%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#a30000] to-[#ff6b6b] rounded-xl flex items-center justify-center">
+                                <i class="fas fa-code-branch text-white text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Django REST</h3>
                         </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon postgres-bg">
-                            <i class="fas fa-database"></i>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">90%</span>
                         </div>
-                        <div class="skill-info">
-                            <div class="skill-name">PostgreSQL</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar postgres-bar" data-width="88">88%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon mysql-bg">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">MySQL</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar mysql-bar" data-width="85">85%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon redis-bg">
-                            <i class="fas fa-memory"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Redis / Celery</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar redis-bar" data-width="80">80%</div>
-                            </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="90"></div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Frontend Skills -->
-            <div class="skills-category" data-aos="fade-up" data-aos-delay="100">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-laptop-code"></i>
+            <div class="mb-16" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#FFAA00] to-[#FFD786] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-laptop-code text-[#237227] text-2xl"></i>
                     </div>
-                    <h2 class="category-title">Frontend Development</h2>
-                    <p class="category-subtitle">Modern & responsive interfaces</p>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Frontend Development</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Modern & responsive interfaces</p>
                 </div>
                 
-                <div class="skills-grid">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- JavaScript -->
                     <div class="skill-card">
-                        <div class="skill-icon js-bg">
-                            <i class="fab fa-js"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">JavaScript (ES6+)</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar js-bar" data-width="90">90%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#f7df1e] to-[#f9d423] rounded-xl flex items-center justify-center">
+                                <i class="fab fa-js text-[#237227] text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">JavaScript (ES6+)</h3>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="90"></div>
                         </div>
                     </div>
                     
+                    <!-- TailwindCSS -->
                     <div class="skill-card">
-                        <div class="skill-icon react-bg">
-                            <i class="fab fa-react"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">React.js</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar react-bar" data-width="85">85%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#06b6d4] to-[#3b82f6] rounded-xl flex items-center justify-center">
+                                <i class="fab fa-css3-alt text-white text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">TailwindCSS</h3>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="95"></div>
                         </div>
                     </div>
                     
+                    <!-- HTML5/CSS3 -->
                     <div class="skill-card">
-                        <div class="skill-icon tailwind-bg">
-                            <i class="fab fa-css3-alt"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">TailwindCSS</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar tailwind-bar" data-width="95">95%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#e44d26] to-[#f16529] rounded-xl flex items-center justify-center">
+                                <i class="fab fa-html5 text-white text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">HTML5 / CSS3</h3>
                         </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon html-bg">
-                            <i class="fab fa-html5"></i>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">94%</span>
                         </div>
-                        <div class="skill-info">
-                            <div class="skill-name">HTML5</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar html-bar" data-width="96">96%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon css-bg">
-                            <i class="fab fa-css3-alt"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">CSS3</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar css-bar" data-width="94">94%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon bootstrap-bg">
-                            <i class="fab fa-bootstrap"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Bootstrap</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar bootstrap-bar" data-width="88">88%</div>
-                            </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="94"></div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Dev Tools & Others -->
-            <div class="skills-category" data-aos="fade-up" data-aos-delay="200">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-tools"></i>
+            <!-- DevOps & Tools -->
+            <div class="mb-16" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#519A66] to-[#237227] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-white text-2xl"></i>
                     </div>
-                    <h2 class="category-title">DevOps & Tools</h2>
-                    <p class="category-subtitle">Streamlined development workflow</p>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white">DevOps & Tools</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Streamlined development workflow</p>
                 </div>
                 
-                <div class="skills-grid">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Git & GitHub -->
                     <div class="skill-card">
-                        <div class="skill-icon git-bg">
-                            <i class="fab fa-git-alt"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Git & GitHub</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar git-bar" data-width="90">90%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#f05033] to-[#e34c26] rounded-xl flex items-center justify-center">
+                                <i class="fab fa-git-alt text-white text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Git & GitHub</h3>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="90"></div>
                         </div>
                     </div>
                     
+                    <!-- PostgreSQL -->
                     <div class="skill-card">
-                        <div class="skill-icon docker-bg">
-                            <i class="fab fa-docker"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Docker</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar docker-bar" data-width="75">75%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#336791] to-[#008bb9] rounded-xl flex items-center justify-center">
+                                <i class="fas fa-database text-white text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">PostgreSQL</h3>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">88%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="88"></div>
                         </div>
                     </div>
                     
+                    <!-- MySQL -->
                     <div class="skill-card">
-                        <div class="skill-icon aws-bg">
-                            <i class="fab fa-aws"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">AWS Services</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar aws-bar" data-width="70">70%</div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#00758f] to-[#f29111] rounded-xl flex items-center justify-center">
+                                <i class="fas fa-database text-white text-xl"></i>
                             </div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">MySQL</h3>
                         </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon linux-bg">
-                            <i class="fab fa-linux"></i>
+                        <div class="flex justify-between mb-2 text-sm">
+                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">85%</span>
                         </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Linux / Ubuntu</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar linux-bar" data-width="85">85%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon vscode-bg">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">VS Code / PyCharm</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar vscode-bar" data-width="92">92%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <div class="skill-icon postman-bg">
-                            <i class="fas fa-paper-plane"></i>
-                        </div>
-                        <div class="skill-info">
-                            <div class="skill-name">Postman / API Testing</div>
-                            <div class="skill-bar-container">
-                                <div class="skill-bar postman-bar" data-width="88">88%</div>
-                            </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="85"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Tech Stack Showcase -->
-    <section class="tech-stack">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="tech-stack-header" data-aos="fade-up">
-                <span class="tech-stack-badge">Complete Toolkit</span>
-                <h2 class="tech-stack-title">Technologies I Work With</h2>
-                <div class="tech-stack-divider"></div>
+    
+    <!-- Technologies I Work With (Fixed Technologies) -->
+    <section class="py-12 px-4">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-3">Technologies I Work With</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-[#237227] to-[#FFAA00] mx-auto"></div>
             </div>
             
-            <div class="tech-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
-                <div class="tech-item"><i class="fab fa-django"></i><span>Django</span></div>
-                <div class="tech-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
-                <div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
-                <div class="tech-item"><i class="fab fa-node-js"></i><span>Node.js</span></div>
-                <div class="tech-item"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
-                <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
-                <div class="tech-item"><i class="fab fa-git-alt"></i><span>Git</span></div>
-                <div class="tech-item"><i class="fab fa-docker"></i><span>Docker</span></div>
-                <div class="tech-item"><i class="fab fa-aws"></i><span>AWS</span></div>
-                <div class="tech-item"><i class="fab fa-css3-alt"></i><span>TailwindCSS</span></div>
-                <div class="tech-item"><i class="fab fa-bootstrap"></i><span>Bootstrap</span></div>
-                <div class="tech-item"><i class="fas fa-code-branch"></i><span>REST API</span></div>
-                <div class="tech-item"><i class="fas fa-memory"></i><span>Redis</span></div>
-                <div class="tech-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" data-aos="fade-up" data-aos-delay="100">
+                <!-- Python -->
+                <div class="tech-badge-simple">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <!-- Django -->
+                <div class="tech-badge-simple">
+                    <i class="fab fa-django"></i>
+                    <span>Django</span>
+                </div>
+                <!-- JavaScript -->
+                <div class="tech-badge-simple">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+                <!-- React -->
+                <div class="tech-badge-simple">
+                    <i class="fab fa-react"></i>
+                    <span>React</span>
+                </div>
+                <!-- PostgreSQL -->
+                <div class="tech-badge-simple">
+                    <i class="fas fa-database"></i>
+                    <span>PostgreSQL</span>
+                </div>
+                <!-- MySQL -->
+                <div class="tech-badge-simple">
+                    <i class="fas fa-database"></i>
+                    <span>MySQL</span>
+                </div>
+                <!-- Git -->
+                <div class="tech-badge-simple">
+                    <i class="fab fa-git-alt"></i>
+                    <span>Git</span>
+                </div>
+                <!-- TailwindCSS -->
+                <div class="tech-badge-simple">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>TailwindCSS</span>
+                </div>
+                <!-- Bootstrap -->
+                <div class="tech-badge-simple">
+                    <i class="fab fa-bootstrap"></i>
+                    <span>Bootstrap</span>
+                </div>
+                <!-- REST API -->
+                <div class="tech-badge-simple">
+                    <i class="fas fa-code-branch"></i>
+                    <span>REST API</span>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Expertise Stats -->
-    <section class="expertise-stats">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="stats-grid">
+    
+    <!-- Stats Section -->
+    <section class="py-12 px-4">
+        <div class="container mx-auto max-w-5xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="stat-card" data-aos="fade-up">
-                    <div class="stat-circle">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="stat-number" data-count="50">0</div>
-                    <div class="stat-label">Projects Completed</div>
+                    <div class="text-3xl mb-2">📁</div>
+                    <div class="stat-number countup" data-count="50">0</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Projects Done</div>
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-circle">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-number" data-count="30">0</div>
-                    <div class="stat-label">Happy Clients</div>
+                    <div class="text-3xl mb-2">😊</div>
+                    <div class="stat-number countup" data-count="30">0</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Happy Clients</div>
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-circle">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="stat-number" data-count="5">0</div>
-                    <div class="stat-label">Years Experience</div>
+                    <div class="text-3xl mb-2">⏰</div>
+                    <div class="stat-number countup" data-count="5">0</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Years Exp</div>
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-circle">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="stat-number" data-count="15">0</div>
-                    <div class="stat-label">Certifications</div>
+                    <div class="text-3xl mb-2">🏆</div>
+                    <div class="stat-number countup" data-count="8">0</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Certifications</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Learning Path -->
-    <section class="learning-path">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="learning-path-header" data-aos="fade-up">
-                <span class="learning-path-badge">Continuous Growth</span>
-                <h2 class="learning-path-title">Currently Learning</h2>
-                <div class="learning-path-divider"></div>
-                <p class="learning-path-description">Always expanding my knowledge to stay ahead</p>
-            </div>
-            
-            <div class="learning-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="learning-card">
-                    <div class="learning-icon"><i class="fab fa-python"></i></div>
-                    <h3>Advanced Django</h3>
-                    <p>Mastering advanced Django patterns and optimization techniques</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar advanced-django" style="width: 75%"></div>
-                    </div>
-                    <span class="progress-text">75% Complete</span>
-                </div>
-                
-                <div class="learning-card">
-                    <div class="learning-icon"><i class="fab fa-react"></i></div>
-                    <h3>React Native</h3>
-                    <p>Building cross-platform mobile applications</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar react-native" style="width: 60%"></div>
-                    </div>
-                    <span class="progress-text">60% Complete</span>
-                </div>
-                
-                <div class="learning-card">
-                    <div class="learning-icon"><i class="fab fa-aws"></i></div>
-                    <h3>AWS Cloud</h3>
-                    <p>Cloud architecture and deployment strategies</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar aws-cloud" style="width: 50%"></div>
-                    </div>
-                    <span class="progress-text">50% Complete</span>
+    
+    <!-- CTA Section -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="bg-gradient-to-r from-[#237227] to-[#519A66] rounded-2xl p-8 md:p-12 text-center text-white" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold mb-3">Ready to Work Together?</h2>
+                <p class="text-white/90 mb-6">Let's discuss your project and create something amazing</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contacts.html" class="bg-white text-[#237227] px-6 py-2 rounded-full font-semibold hover:shadow-lg transition">Hire Me</a>
+                    <a href="projects.html" class="border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-[#237227] transition">View Work</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Call to Action -->
-    <section class="skills-cta">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 data-aos="fade-up">Ready to work together?</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Let's bring your ideas to life with my technical expertise</p>
-            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
-                <a href="contacts.html" class="cta-primary">Hire Me</a>
-                <a href="projects.html" class="cta-secondary">View Projects</a>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- Footer -->
-        <!-- ========== FOOTER (Same as index.html) ========== -->
-    <footer class="relative overflow-hidden bg-white dark:bg-gray-900">
-        <div class="container mx-auto px-4 py-8 relative z-10">
-            <!-- Top Section -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
-                
-                <!-- Brand Section -->
-                <div class="space-y-2">
-                    <a href="index.html" class="group block cursor-pointer">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-8 h-8 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-lg flex items-center justify-center shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-                                <i class="fas fa-code text-[#FFD786] text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-base">
-                                    <span class="text-[#237227]">Dev</span>
-                                    <span class="text-gray-800 dark:text-white">Portfolio</span>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                    <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Creating exceptional digital experiences with Django & modern web technologies.
-                    </p>
-                    
-                    <!-- Trust Badges -->
-                    <div class="flex flex-wrap gap-1.5">
-                        <span class="hover-badge text-[10px] bg-white/70 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-700 dark:text-gray-300 border-l border-[#237227] transition-all duration-300 cursor-pointer">
-                            <i class="fas fa-check-circle text-[#FFAA00] text-[8px] mr-0.5"></i> 50+ Projects
-                        </span>
-                        <span class="hover-badge text-[10px] bg-white/70 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-700 dark:text-gray-300 border-l border-[#237227] transition-all duration-300 cursor-pointer">
-                            <i class="fas fa-smile text-[#FFAA00] text-[8px] mr-0.5"></i> 30+ Clients
-                        </span>
-                        <span class="hover-badge text-[10px] bg-white/70 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-700 dark:text-gray-300 border-l border-[#237227] transition-all duration-300 cursor-pointer">
-                            <i class="fas fa-clock text-[#FFAA00] text-[8px] mr-0.5"></i> 5+ Experience
-                        </span>
-                    </div>
-                </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-semibold text-sm mb-2 relative inline-block text-gray-800 dark:text-white">
-                        Quick Links
-                        <span class="absolute -bottom-0.5 left-0 w-8 h-0.5 bg-[#FFAA00]"></span>
-                    </h4>
-                    <ul class="space-y-1.5">
-                        <li>
-                            <a href="index.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="about.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                About
-                            </a>
-                        </li>
-                        <li>
-                            <a href="skills.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                Skills
-                            </a>
-                        </li>
-                        <li>
-                            <a href="projects.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                Projects
-                            </a>
-                        </li>
-                        <li>
-                            <a href="contacts.html" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                Contact
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Services -->
-                <div>
-                    <h4 class="font-semibold text-sm mb-2 relative inline-block text-gray-800 dark:text-white">
-                        Services
-                        <span class="absolute -bottom-0.5 left-0 w-8 h-0.5 bg-[#FFAA00]"></span>
-                    </h4>
-                    <ul class="space-y-1.5">
-                        <li>
-                            <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                <i class="fab fa-python w-3 mr-1 text-[#519A66]"></i>
-                                Django Dev
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                <i class="fas fa-mobile-alt w-3 mr-1 text-[#519A66]"></i>
-                                Responsive Design
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                <i class="fas fa-palette w-3 mr-1 text-[#519A66]"></i>
-                                Template Design
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                <i class="fab fa-css3-alt w-3 mr-1 text-[#519A66]"></i>
-                                TailwindCSS
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link text-xs text-gray-600 dark:text-gray-400 hover:text-[#237227] transition-all duration-300 flex items-center group">
-                                <span class="arrow-hover mr-1 text-[#92e1ba] text-[11px] group-hover:text-[#237227] transition-colors opacity-0 group-hover:opacity-100">-</span>
-                                <i class="fas fa-database w-3 mr-1 text-[#519A66]"></i>
-                                API Dev
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Connect Section -->
-                <div>
-                    <h4 class="font-semibold text-sm mb-2 relative inline-block text-gray-800 dark:text-white">
-                        Connect
-                        <span class="absolute -bottom-0.5 left-0 w-8 h-0.5 bg-[#FFAA00]"></span>
-                    </h4>
-                    
-                    <ul class="space-y-2 mb-3">
-                        <li class="connect-item flex items-center text-gray-600 dark:text-gray-400 group cursor-pointer text-xs transition-all duration-300 hover:text-[#237227]">
-                            <i class="fas fa-globe w-3 mr-2 text-[#237227]"></i>
-                            <span class="relative inline-block">
-                                www.devportfolio.com
-                                <span class="connect-bar absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#237227] to-[#FFAA00] transition-all duration-300 group-hover:w-full"></span>
-                            </span>
-                        </li>
-                        
-                        <li class="connect-item flex items-center text-gray-600 dark:text-gray-400 group cursor-pointer text-xs transition-all duration-300 hover:text-[#237227]">
-                            <i class="fas fa-envelope w-3 mr-2 text-[#237227]"></i>
-                            <span class="relative inline-block">
-                                contact@devportfolio.com
-                                <span class="connect-bar absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#237227] to-[#FFAA00] transition-all duration-300 group-hover:w-full"></span>
-                            </span>
-                        </li>
-                        
-                        <li class="connect-item flex items-center text-gray-600 dark:text-gray-400 group text-xs transition-all duration-300 hover:text-[#237227]">
-                            <i class="fab fa-github w-3 mr-2 text-[#237227]"></i>
-                            <span class="relative inline-block">
-                                <a href="#" class="hover:text-[#237227] transition">github.com/devportfolio</a>
-                                <span class="connect-bar absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#237227] to-[#FFAA00] transition-all duration-300 group-hover:w-full"></span>
-                            </span>
-                        </li>
-                        
-                        <li class="connect-item flex items-center text-gray-600 dark:text-gray-400 group cursor-pointer text-xs transition-all duration-300 hover:text-[#237227]">
-                            <i class="fas fa-phone-alt w-3 mr-2 text-[#237227]"></i>
-                            <span class="relative inline-block">
-                                +880 1234 567890
-                                <span class="connect-bar absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#237227] to-[#FFAA00] transition-all duration-300 group-hover:w-full"></span>
-                            </span>
-                        </li>
-                    </ul>
-                    
-                    <div class="flex space-x-2 mb-3">
-                        <a href="#" class="social-icon group">
-                            <div class="w-7 h-7 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#237227] group-hover:to-[#519A66] shadow-sm border border-gray-200 dark:border-gray-700">
-                                <i class="fab fa-github text-gray-600 dark:text-gray-400 group-hover:text-white text-xs"></i>
-                            </div>
-                        </a>
-                        <a href="#" class="social-icon group">
-                            <div class="w-7 h-7 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#237227] group-hover:to-[#519A66] shadow-sm border border-gray-200 dark:border-gray-700">
-                                <i class="fab fa-linkedin-in text-gray-600 dark:text-gray-400 group-hover:text-white text-xs"></i>
-                            </div>
-                        </a>
-                        <a href="#" class="social-icon group">
-                            <div class="w-7 h-7 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#237227] group-hover:to-[#519A66] shadow-sm border border-gray-200 dark:border-gray-700">
-                                <i class="fab fa-twitter text-gray-600 dark:text-gray-400 group-hover:text-white text-xs"></i>
-                            </div>
-                        </a>
-                        <a href="#" class="social-icon group">
-                            <div class="w-7 h-7 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#237227] group-hover:to-[#519A66] shadow-sm border border-gray-200 dark:border-gray-700">
-                                <i class="fab fa-dev text-gray-600 dark:text-gray-400 group-hover:text-white text-xs"></i>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div>
-                        <form method="post" action="#" class="relative" onsubmit="event.preventDefault(); handleNewsletter(this)">
-                            <input type="email" name="email" placeholder="Email" 
-                                class="w-full px-3 py-1.5 text-xs rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#FFAA00] pr-8 transition">
-                            <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-[#237227] dark:text-[#92e1ba] hover:text-[#FFAA00] transition">
-                                <i class="fas fa-paper-plane text-xs"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bottom Bar -->
-            <div class="border-t border-[#92e1ba]/40 pt-3 mt-2">
-                <div class="flex flex-col lg:flex-row justify-between items-center gap-3">
-                    <div class="text-[11px] text-gray-600 dark:text-gray-400 text-center lg:text-left">
-                        <i class="fas fa-code mr-1 text-[#237227] text-[10px]"></i>
-                        © 2024 Jack Dev. All rights reserved.
-                    </div>
-                    
-                    <div class="flex space-x-5 text-[11px]">
-                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Privacy</a>
-                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Terms & Conditions</a>
-                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Support</a>
-                    </div>
-                    
-                    <div class="flex flex-wrap justify-center items-center gap-1.5">
-                        <span class="tech-badge text-[10px] px-2.5 py-0.5 rounded-full flex items-center gap-1 transition-all duration-300 cursor-pointer">
-                            <i class="fab fa-python text-[10px]"></i>
-                            Django
-                        </span>
-                        <span class="tech-badge text-[10px] px-2.5 py-0.5 rounded-full flex items-center gap-1 transition-all duration-300 cursor-pointer">
-                            <i class="fab fa-js text-[10px]"></i>
-                            JavaScript
-                        </span>
-                        <span class="tech-badge text-[10px] px-2.5 py-0.5 rounded-full flex items-center gap-1 transition-all duration-300 cursor-pointer">
-                            <i class="fab fa-css3-alt text-[10px]"></i>
-                            TailwindCSS
-                        </span>
-                    </div>
-                </div>
+    <footer class="bg-white dark:bg-gray-900 border-t border-[#92e1ba]/40 py-8 px-4">
+        <div class="container mx-auto max-w-6xl text-center">
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                <i class="fas fa-code text-[#237227] mr-1"></i>
+                © 2024 Jack Dev. All rights reserved.
+            </p>
+            <div class="flex justify-center gap-6 mt-3">
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] text-sm">Privacy</a>
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] text-sm">Terms</a>
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] text-sm">Support</a>
             </div>
         </div>
     </footer>
-
-    <button id="scrollToTop" class="scroll-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
+    
+    <!-- Scroll to Top -->
+    <div id="scrollToTop" class="scroll-top">
+        <i class="fas fa-arrow-up text-white"></i>
+    </div>
+    
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/skills.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ duration: 800, once: true });
+        
+        // Dark Mode
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+        
+        // Animate Progress Bars
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.getAttribute('data-width');
+                        if (width) bar.style.width = width + '%';
+                        observer.unobserve(bar);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            progressBars.forEach(bar => observer.observe(bar));
+        }
+        
+        // Animate Counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.countup');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-count'));
+                        let current = 0;
+                        const increment = target / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target + '+';
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current) + '+';
+                            }
+                        }, 20);
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => observer.observe(counter));
+        }
+        
+        // Mobile Menu
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.classList.add('menu-open');
+            hamburgerIcon.classList.remove('fa-bars');
+            hamburgerIcon.classList.add('fa-times');
+        }
+        
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            hamburgerIcon.classList.remove('fa-times');
+            hamburgerIcon.classList.add('fa-bars');
+        }
+        
+        hamburgerBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+        
+        // Scroll to Top
+        const scrollBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+        
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Initialize animations
+        window.addEventListener('load', () => {
+            animateProgressBars();
+            animateCounters();
+        });
+    </script>
 </body>
 </html>
