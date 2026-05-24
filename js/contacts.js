@@ -1,0 +1,164 @@
+// Initialize AOS
+AOS.init({ duration: 800, once: true });
+
+// Dark Mode Toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const html = document.documentElement;
+
+if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+}
+
+themeToggle.addEventListener('click', () => {
+    if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+    } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
+});
+
+// Mobile Menu
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenuBtn = document.getElementById('closeMenuBtn');
+const menuOverlay = document.getElementById('menuOverlay');
+const hamburgerIcon = document.getElementById('hamburgerIcon');
+
+function openMenu() {
+    mobileMenu.classList.add('active');
+    menuOverlay.classList.add('active');
+    document.body.classList.add('menu-open');
+    hamburgerIcon.classList.remove('fa-bars');
+    hamburgerIcon.classList.add('fa-times');
+}
+
+function closeMenu() {
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.classList.remove('menu-open');
+    hamburgerIcon.classList.remove('fa-times');
+    hamburgerIcon.classList.add('fa-bars');
+}
+
+hamburgerBtn.addEventListener('click', openMenu);
+closeMenuBtn.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+// Close menu on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        closeMenu();
+    }
+});
+
+// Close menu on link click
+document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
+
+// Scroll to Top
+const scrollBtn = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollBtn.classList.add('show');
+    } else {
+        scrollBtn.classList.remove('show');
+    }
+});
+
+scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Newsletter Handler
+function handleNewsletter(form) {
+    const input = form.querySelector('input');
+    if (input && input.value.trim()) {
+        const button = form.querySelector('button');
+        const originalIcon = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            input.value = '';
+            showToast('✓ Subscribed successfully!', 'success');
+        }, 800);
+    } else {
+        showToast('⚠ Please enter your email', 'error');
+    }
+}
+
+// Contact Form Submission
+function submitForm(form) {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    if (name && email && subject && message) {
+        const submitBtn = form.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (replace with actual API call)
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            form.reset();
+            showToast('✓ Message sent successfully! I\'ll get back to you soon.', 'success');
+        }, 1500);
+    } else {
+        showToast('⚠ Please fill in all fields', 'error');
+    }
+}
+
+// Toast Notification
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.className = `fixed bottom-20 right-4 z-50 px-4 py-2 rounded-lg shadow-lg text-white text-sm ${
+        type === 'success' ? 'bg-gradient-to-r from-[#237227] to-[#519A66]' : 'bg-gray-700'
+    } animate-toast`;
+    toast.innerHTML = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// FAQ Accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+        item.classList.toggle('active');
+    });
+});
+
+// Add toast animation style
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(50px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    .animate-toast {
+        animation: slideInRight 0.3s ease-out;
+    }
+`;
+document.head.appendChild(style);
+
+// Form input animation enhancement
+document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+    if (input.value !== '') {
+        input.dispatchEvent(new Event('input'));
+    }
+});
