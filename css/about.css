@@ -7,10 +7,11 @@
     box-sizing: border-box;
 }
 
-body {
+html,body {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #e7f4ec 0%, #faf8f6 25%, #e7f4ec 50%, #b0eacd 75%, #92e1ba 100%);
     overflow-x: hidden;
+    width: 100%;
 }
 
 .dark body {
