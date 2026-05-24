@@ -346,29 +346,32 @@
     </section>
     
     <!-- Skills Sections - 3 Columns -->
-    <section class="py-8 px-4">
-        <div class="container mx-auto max-w-6xl">
+    <!-- Skills Sections - All 3 Sections in One Row -->
+<section class="py-8 px-4">
+    <div class="container mx-auto max-w-6xl">
+        <!-- All 3 Categories in 1 Row - 3 Columns -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
             <!-- Backend Skills -->
-            <div class="mb-16" data-aos="fade-up">
-                <div class="text-center mb-8">
-                    <div class="w-16 h-16 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div class="skill-card" data-aos="fade-up">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-2xl flex items-center justify-center mx-auto mb-3">
                         <i class="fas fa-server text-white text-2xl"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Backend Development</h2>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Robust server-side technologies</p>
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white">Backend Development</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs mt-1">Robust server-side</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Python -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#3776AB] to-[#FFD43B] rounded-xl flex items-center justify-center">
-                                <i class="fab fa-python text-white text-xl"></i>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#3776AB] to-[#FFD43B] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-python text-white text-xs"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Python</h3>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Python</span>
                         </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
                             <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">95%</span>
                         </div>
                         <div class="progress-bar">
@@ -376,16 +379,15 @@
                         </div>
                     </div>
                     
-                    <!-- Django -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#092E20] to-[#44B78B] rounded-xl flex items-center justify-center">
-                                <i class="fab fa-django text-white text-xl"></i>
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#092E20] to-[#44B78B] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-django text-white text-xs"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Django</h3>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Django</span>
                         </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
                             <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">92%</span>
                         </div>
                         <div class="progress-bar">
@@ -393,46 +395,15 @@
                         </div>
                     </div>
                     
-                    <!-- DRF -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#a30000] to-[#ff6b6b] rounded-xl flex items-center justify-center">
-                                <i class="fas fa-code-branch text-white text-xl"></i>
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#a30000] to-[#ff6b6b] rounded-lg flex items-center justify-center">
+                                <i class="fas fa-code-branch text-white text-xs"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Django REST</h3>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Django REST Framework</span>
                         </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
-                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" data-width="90"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Frontend Skills -->
-            <div class="mb-16" data-aos="fade-up" data-aos-delay="100">
-                <div class="text-center mb-8">
-                    <div class="w-16 h-16 bg-gradient-to-br from-[#FFAA00] to-[#FFD786] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-laptop-code text-[#237227] text-2xl"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Frontend Development</h2>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Modern & responsive interfaces</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- JavaScript -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#f7df1e] to-[#f9d423] rounded-xl flex items-center justify-center">
-                                <i class="fab fa-js text-[#237227] text-xl"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">JavaScript (ES6+)</h3>
-                        </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
                             <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">90%</span>
                         </div>
                         <div class="progress-bar">
@@ -440,16 +411,76 @@
                         </div>
                     </div>
                     
-                    <!-- TailwindCSS -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#06b6d4] to-[#3b82f6] rounded-xl flex items-center justify-center">
-                                <i class="fab fa-css3-alt text-white text-xl"></i>
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#336791] to-[#008bb9] rounded-lg flex items-center justify-center">
+                                <i class="fas fa-database text-white text-xs"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">TailwindCSS</h3>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">PostgreSQL / MySQL</span>
                         </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">88%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="88"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Frontend Skills -->
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#FFAA00] to-[#FFD786] rounded-2xl flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-laptop-code text-[#237227] text-2xl"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white">Frontend Development</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs mt-1">Modern & responsive</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#f7df1e] to-[#f9d423] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-js text-[#237227] text-xs"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">JavaScript (ES6+)</span>
+                        </div>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="90"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#61dafb] to-[#00d8ff] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-react text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">React.js</span>
+                        </div>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="85"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#06b6d4] to-[#3b82f6] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-css3-alt text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">TailwindCSS</span>
+                        </div>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
                             <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">95%</span>
                         </div>
                         <div class="progress-bar">
@@ -457,16 +488,15 @@
                         </div>
                     </div>
                     
-                    <!-- HTML5/CSS3 -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#e44d26] to-[#f16529] rounded-xl flex items-center justify-center">
-                                <i class="fab fa-html5 text-white text-xl"></i>
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#e44d26] to-[#f16529] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-html5 text-white text-xs"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">HTML5 / CSS3</h3>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">HTML5 / CSS3</span>
                         </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
                             <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">94%</span>
                         </div>
                         <div class="progress-bar">
@@ -477,26 +507,25 @@
             </div>
             
             <!-- DevOps & Tools -->
-            <div class="mb-16" data-aos="fade-up" data-aos-delay="200">
-                <div class="text-center mb-8">
-                    <div class="w-16 h-16 bg-gradient-to-br from-[#519A66] to-[#237227] rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#519A66] to-[#237227] rounded-2xl flex items-center justify-center mx-auto mb-3">
                         <i class="fas fa-tools text-white text-2xl"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white">DevOps & Tools</h2>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Streamlined development workflow</p>
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white">DevOps & Tools</h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs mt-1">Streamlined workflow</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Git & GitHub -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#f05033] to-[#e34c26] rounded-xl flex items-center justify-center">
-                                <i class="fab fa-git-alt text-white text-xl"></i>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#f05033] to-[#e34c26] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-git-alt text-white text-xs"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Git & GitHub</h3>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Git & GitHub</span>
                         </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
                             <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">90%</span>
                         </div>
                         <div class="progress-bar">
@@ -504,43 +533,58 @@
                         </div>
                     </div>
                     
-                    <!-- PostgreSQL -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#336791] to-[#008bb9] rounded-xl flex items-center justify-center">
-                                <i class="fas fa-database text-white text-xl"></i>
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#2496ed] to-[#066da5] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-docker text-white text-xs"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">PostgreSQL</h3>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Docker</span>
                         </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
-                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">88%</span>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">75%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" data-width="88"></div>
+                            <div class="progress-fill" data-width="75"></div>
                         </div>
                     </div>
                     
-                    <!-- MySQL -->
-                    <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-[#00758f] to-[#f29111] rounded-xl flex items-center justify-center">
-                                <i class="fas fa-database text-white text-xl"></i>
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#ff9900] to-[#ffc300] rounded-lg flex items-center justify-center">
+                                <i class="fab fa-aws text-white text-xs"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">MySQL</h3>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">AWS Services</span>
                         </div>
-                        <div class="flex justify-between mb-2 text-sm">
-                            <span class="text-gray-600 dark:text-gray-400">Proficiency</span>
-                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">85%</span>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">70%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" data-width="85"></div>
+                            <div class="progress-fill" data-width="70"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#007acc] to-[#0098ff] rounded-lg flex items-center justify-center">
+                                <i class="fas fa-code text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">VS Code / PyCharm</span>
+                        </div>
+                        <div class="flex justify-between mb-1 text-xs">
+                            <span class="text-gray-500">Proficiency</span>
+                            <span class="text-[#237227] dark:text-[#92e1ba] font-semibold">92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="92"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     
     <!-- Technologies I Work With (Fixed Technologies) -->
     <section class="py-12 px-4">
