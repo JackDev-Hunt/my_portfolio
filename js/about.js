@@ -23,26 +23,9 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// Animate Progress Bars
-function animateProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-fill');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bar = entry.target;
-                const width = bar.getAttribute('data-width');
-                if (width) bar.style.width = width + '%';
-                observer.unobserve(bar);
-            }
-        });
-    }, { threshold: 0.3 });
-    
-    progressBars.forEach(bar => observer.observe(bar));
-}
-
 // Animate Counters
 function animateCounters() {
-    const counters = document.querySelectorAll('.countup');
+    const counters = document.querySelectorAll('.stat-number');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -94,16 +77,10 @@ hamburgerBtn.addEventListener('click', openMenu);
 closeMenuBtn.addEventListener('click', closeMenu);
 menuOverlay.addEventListener('click', closeMenu);
 
-// Close menu on escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
         closeMenu();
     }
-});
-
-// Close menu on link click
-document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-    link.addEventListener('click', closeMenu);
 });
 
 // Scroll to Top
@@ -142,7 +119,7 @@ function showToast(message, type) {
     const toast = document.createElement('div');
     toast.className = `fixed bottom-20 right-4 z-50 px-4 py-2 rounded-lg shadow-lg text-white text-sm ${
         type === 'success' ? 'bg-gradient-to-r from-[#237227] to-[#519A66]' : 'bg-gray-700'
-    } animate-toast`;
+    }`;
     toast.innerHTML = message;
     document.body.appendChild(toast);
     
@@ -153,21 +130,22 @@ function showToast(message, type) {
     }, 3000);
 }
 
-// Add toast animation style
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from { opacity: 0; transform: translateX(50px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-    .animate-toast {
-        animation: slideInRight 0.3s ease-out;
-    }
-`;
-document.head.appendChild(style);
+// Timeline Scroll Animation
+function animateTimeline() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    timelineItems.forEach(item => observer.observe(item));
+}
 
 // Initialize animations
 window.addEventListener('load', () => {
-    animateProgressBars();
     animateCounters();
+    animateTimeline();
 });

@@ -23,50 +23,6 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// Animate Progress Bars
-function animateProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-fill');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bar = entry.target;
-                const width = bar.getAttribute('data-width');
-                if (width) bar.style.width = width + '%';
-                observer.unobserve(bar);
-            }
-        });
-    }, { threshold: 0.3 });
-    
-    progressBars.forEach(bar => observer.observe(bar));
-}
-
-// Animate Counters
-function animateCounters() {
-    const counters = document.querySelectorAll('.countup');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-count'));
-                let current = 0;
-                const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        counter.textContent = target + '+';
-                        clearInterval(timer);
-                    } else {
-                        counter.textContent = Math.floor(current) + '+';
-                    }
-                }, 20);
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    counters.forEach(counter => observer.observe(counter));
-}
-
 // Mobile Menu
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -165,9 +121,3 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-
-// Initialize animations
-window.addEventListener('load', () => {
-    animateProgressBars();
-    animateCounters();
-});
