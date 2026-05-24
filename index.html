@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Professional Portfolio - Full-Stack Developer specializing in Django, TailwindCSS, and modern web technologies">
+    <meta name="keywords" content="Django, Python, TailwindCSS, Portfolio, Web Developer">
+    <meta name="author" content="Jack Dev">
+    
+    <title>Jack Dev | Professional Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#237227',
+                        secondary: '#519A66',
+                        accent: '#FFAA00',
+                        highlight: '#FFD786',
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    
+    <style>
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+        }
+        
+        .menu-overlay.active {
+            display: block;
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* Better Touch Targets for Mobile */
+        @media (max-width: 768px) {
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .stat-badge {
+                padding: 6px 8px;
+                min-width: 60px;
+            }
+            
+            .stat-number {
+                font-size: 0.9rem;
+            }
+            
+            .stat-label {
+                font-size: 0.55rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- Decorative Lines -->
+    <div class="middle-line"></div>
+    
+    <!-- Main Content -->
+    <div class="main-wrapper min-h-screen">
+        
+        <!-- Navigation with Hamburger Menu -->
+        <nav class="fixed w-full z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16 md:h-20">
+                    <!-- Logo -->
+                    <a href="index.html" class="flex items-center space-x-2 group">
+                        <div class="w-10 h-10 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-105">
+                            <i class="fas fa-code text-[#FFD786] text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-[#237227] to-[#FFAA00] bg-clip-text text-transparent">DevPortfolio</span>
+                    </a>
+                    
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium">Home</a>
+                        <a href="about.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium">About</a>
+                        <a href="projects.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium">Projects</a>
+                        <a href="contacts.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium">Contact</a>
+                    </div>
+                    
+                    <!-- Right Side Buttons -->
+                    <div class="flex items-center space-x-3">
+                        <!-- Dark Mode Toggle -->
+                        <button id="themeToggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:scale-110 transition shadow-md">
+                            <i id="themeIcon" class="fas fa-moon text-gray-700 dark:text-gray-300 text-lg"></i>
+                        </button>
+                        
+                        <!-- Desktop Resume Button -->
+                        <a href="resume.pdf" download="Jack_Dev_Resume.pdf" 
+                           class="hidden md:flex items-center gap-2 bg-gradient-to-r from-[#237227] to-[#519A66] hover:from-[#1a5a1e] hover:to-[#3d7a4f] text-white px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                            <i class="fas fa-download text-sm"></i>
+                            <span>Resume</span>
+                        </a>
+                        
+                        <!-- Hamburger Menu Button (Mobile) -->
+                        <button id="hamburgerBtn" class="md:hidden w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:scale-110 transition shadow-md">
+                            <i id="hamburgerIcon" class="fas fa-bars text-gray-700 dark:text-gray-300 text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu Sidebar -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white dark:bg-gray-900 shadow-2xl z-50 pt-20 px-6">
+            <!-- Close Button -->
+            <button id="closeMenuBtn" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                <i class="fas fa-times text-gray-700 dark:text-gray-300 text-lg"></i>
+            </button>
+            
+            <!-- Mobile Navigation Links -->
+            <div class="flex flex-col space-y-4">
+                <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium py-2 border-b border-gray-200 dark:border-gray-700">Home</a>
+                <a href="about.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium py-2 border-b border-gray-200 dark:border-gray-700">About</a>
+                <a href="projects.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium py-2 border-b border-gray-200 dark:border-gray-700">Projects</a>
+                <a href="contacts.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition font-medium py-2 border-b border-gray-200 dark:border-gray-700">Contact</a>
+                
+                <!-- Mobile Resume Button -->
+                <a href="resume.pdf" download="Jack_Dev_Resume.pdf" 
+                   class="flex items-center justify-center gap-2 bg-gradient-to-r from-[#237227] to-[#519A66] text-white px-5 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md mt-4">
+                    <i class="fas fa-download text-sm"></i>
+                    <span>Download Resume</span>
+                </a>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="absolute bottom-8 left-0 right-0 px-6">
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] transition">
+                        <i class="fab fa-github text-gray-700 dark:text-gray-300"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] transition">
+                        <i class="fab fa-linkedin-in text-gray-700 dark:text-gray-300"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] transition">
+                        <i class="fab fa-twitter text-gray-700 dark:text-gray-300"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hero Section - Mobile Optimized -->
+        <section id="home" class="min-h-screen flex items-center justify-center px-4 pt-20 pb-10">
+            <div class="container mx-auto max-w-6xl">
+                <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+                    
+                    <!-- Left Side -->
+                    <div class="flex-1 text-center lg:text-left order-2 lg:order-1" data-aos="fade-right">
+                        <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm border border-[#92e1ba] shadow-sm mb-4">
+                            <span class="w-1.5 h-1.5 bg-[#237227] rounded-full mr-1.5 animate-pulse"></span>
+                            <span class="text-[11px] font-semibold text-[#237227] dark:text-[#92e1ba]">Available for Work</span>
+                        </div>
+                        
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 mt-2">
+                            <span class="block text-gray-800 dark:text-white">Hi, I'm</span>
+                            <span class="gradient-text">Jack Dev.</span>
+                        </h1>
+                        
+                        <div class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-3 h-10 sm:h-12 md:h-16">
+                            <span class="typing-text text-gray-700 dark:text-gray-300 font-medium"></span>
+                        </div>
+                        
+                        <p class="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 mb-6 leading-relaxed px-2 sm:px-0">
+                            Building exceptional digital experiences with modern web technologies. 
+                            Specialized in Django, Python, and full-stack development with 5+ years of experience.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-6">
+                            <a href="#projects" class="btn-premium px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-white font-semibold inline-flex items-center justify-center group text-sm sm:text-base">
+                                View My Work
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </a>
+                            <a href="#contact" class="btn-outline-premium px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold inline-flex items-center justify-center text-sm sm:text-base">
+                                Let's Talk
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 justify-center lg:justify-start">
+                            <span class="tech-tag-premium text-xs sm:text-sm"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-tag-premium text-xs sm:text-sm"><i class="fab fa-django"></i> Django</span>
+                            <span class="tech-tag-premium text-xs sm:text-sm"><i class="fas fa-database"></i> PostgreSQL</span>
+                            <span class="tech-tag-premium text-xs sm:text-sm"><i class="fab fa-js"></i> JavaScript</span>
+                            <span class="tech-tag-premium text-xs sm:text-sm"><i class="fab fa-css3-alt"></i> Tailwind</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Profile Image with Badges -->
+                    <div class="flex-1 flex justify-center order-1 lg:order-2 mb-8 lg:mb-0" data-aos="fade-left">
+                        <div class="profile-container w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+                            <div class="absolute inset-0 bg-gradient-to-br from-[#237227] to-[#FFAA00] rounded-full opacity-20 blur-2xl animate-pulse"></div>
+                            
+                            <div class="profile-image-wrapper-no-hover">
+                                <img src="images/logo_04.png" alt="Jack Dev" class="profile-image-simple" onerror="this.src='https://via.placeholder.com/400x400/237227/white?text=Jack+Dev'">
+                            </div>
+                            
+                            <!-- Badges -->
+                            <div class="stat-badge stat-badge-top-right">
+                                <div class="text-center">
+                                    <i class="fas fa-calendar-alt text-[#237227] dark:text-[#92e1ba] text-xs sm:text-sm mb-1 block"></i>
+                                    <div class="stat-number text-sm sm:text-base">5+</div>
+                                    <div class="stat-label text-[10px] sm:text-xs">Years Exp</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-badge stat-badge-top-left">
+                                <div class="text-center">
+                                    <i class="fas fa-project-diagram text-[#237227] dark:text-[#92e1ba] text-xs sm:text-sm mb-1 block"></i>
+                                    <div class="stat-number text-sm sm:text-base">50+</div>
+                                    <div class="stat-label text-[10px] sm:text-xs">Projects</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-badge stat-badge-bottom-right">
+                                <div class="text-center">
+                                    <i class="fas fa-smile text-[#237227] dark:text-[#92e1ba] text-xs sm:text-sm mb-1 block"></i>
+                                    <div class="stat-number text-sm sm:text-base">30+</div>
+                                    <div class="stat-label text-[10px] sm:text-xs">Happy Clients</div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-badge stat-badge-bottom-left">
+                                <div class="text-center">
+                                    <i class="fas fa-globe text-[#237227] dark:text-[#92e1ba] text-xs sm:text-sm mb-1 block"></i>
+                                    <div class="stat-number text-sm sm:text-base">10+</div>
+                                    <div class="stat-label text-[10px] sm:text-xs">Countries</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section - Mobile Optimized -->
+        <section id="about" class="py-12 sm:py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
+                    <span class="inline-block px-4 py-1 rounded-full bg-[#237227]/10 text-[#237227] text-xs sm:text-sm font-semibold mb-3">About Me</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-3">Who Am I?</h2>
+                    <div class="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#237227] to-[#FFAA00] mx-auto"></div>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                    <div class="flex-1" data-aos="fade-right">
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">
+                            I'm <span class="font-semibold text-[#237227]">Jack Dev</span>, a passionate full-stack developer with over 5 years of experience 
+                            in building web applications. I love creating elegant solutions to complex problems.
+                        </p>
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">
+                            My journey in programming started when I was in college. Since then, I've worked with 
+                            various companies and startups, delivering high-quality web solutions.
+                        </p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex items-center text-xs sm:text-sm"><i class="fas fa-check-circle text-[#237227] mr-2"></i><span class="text-gray-700 dark:text-gray-300">5+ Years Exp</span></div>
+                            <div class="flex items-center text-xs sm:text-sm"><i class="fas fa-check-circle text-[#237227] mr-2"></i><span class="text-gray-700 dark:text-gray-300">50+ Projects</span></div>
+                            <div class="flex items-center text-xs sm:text-sm"><i class="fas fa-check-circle text-[#237227] mr-2"></i><span class="text-gray-700 dark:text-gray-300">30+ Clients</span></div>
+                            <div class="flex items-center text-xs sm:text-sm"><i class="fas fa-check-circle text-[#237227] mr-2"></i><span class="text-gray-700 dark:text-gray-300">24/7 Support</span></div>
+                        </div>
+                    </div>
+                    <div class="flex-1" data-aos="fade-left">
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-5 sm:p-6">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-3">My Mission</h3>
+                            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3">To create innovative, user-friendly web solutions that help businesses grow.</p>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-3 mt-5">My Vision</h3>
+                            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">To become a leading developer known for quality and innovation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section - Mobile Optimized -->
+        <section id="projects" class="py-12 sm:py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
+                    <span class="inline-block px-4 py-1 rounded-full bg-[#237227]/10 text-[#237227] text-xs sm:text-sm font-semibold mb-3">Portfolio</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-3">Featured Projects</h2>
+                    <div class="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#237227] to-[#FFAA00] mx-auto"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Project cards remain same but mobile optimized -->
+                    <div class="premium-card overflow-hidden group project-card" data-aos="fade-up">
+                        <div class="relative overflow-hidden h-48 sm:h-56">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=350&fit=crop" alt="E-Commerce Platform" class="project-image w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <span class="text-white text-xs font-semibold bg-white/20 backdrop-blur px-2 py-1 rounded">Live Demo →</span>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-5">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-2">E-Commerce Platform</h3>
+                            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">Full-featured e-commerce with Django, Stripe payment, cart, orders, and admin panel.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">Django</span>
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">PostgreSQL</span>
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="premium-card overflow-hidden group project-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative overflow-hidden h-48 sm:h-56">
+                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=350&fit=crop" alt="Task Management System" class="project-image w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <span class="text-white text-xs font-semibold bg-white/20 backdrop-blur px-2 py-1 rounded">Live Demo →</span>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-5">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-2">Task Management System</h3>
+                            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">Real-time task manager with WebSocket notifications, team collaboration, and analytics.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">Django</span>
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">WebSocket</span>
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">Redis</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="premium-card overflow-hidden group project-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative overflow-hidden h-48 sm:h-56">
+                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=500&h=350&fit=crop" alt="Blog Platform" class="project-image w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <span class="text-white text-xs font-semibold bg-white/20 backdrop-blur px-2 py-1 rounded">Live Demo →</span>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-5">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-2">Blog Platform with API</h3>
+                            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">Full-featured blog with REST API, comments, categories, tags, and SEO optimization.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">Django REST</span>
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">React</span>
+                                <span class="text-[10px] sm:text-xs bg-[#92e1ba]/20 text-[#237227] dark:text-[#92e1ba] px-2 py-1 rounded">Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section - Mobile Optimized -->
+        <section id="contact" class="py-12 sm:py-20 px-4 bg-gradient-to-r from-[#237227] to-[#519A66]">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">Let's Work Together</h2>
+                <p class="text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base px-4">Have a project in mind? Let's discuss how I can help bring your ideas to life.</p>
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                    <a href="mailto:jackdev@example.com" class="bg-white text-[#237227] px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:shadow-lg transition flex items-center gap-2 text-sm sm:text-base">
+                        <i class="fas fa-envelope"></i> jackdev@example.com
+                    </a>
+                    <a href="#" target="_blank" class="border-2 border-white text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-[#237227] transition flex items-center gap-2 text-sm sm:text-base">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="#" target="_blank" class="border-2 border-white text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white hover:text-[#237227] transition flex items-center gap-2 text-sm sm:text-base">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer remains same but ensure mobile padding -->
+        <footer class="relative overflow-hidden bg-white dark:bg-gray-900">
+            <!-- Footer content same as before but with mobile optimizations -->
+            <div class="container mx-auto px-4 py-6 sm:py-8 relative z-10">
+                <!-- Footer content here -->
+                <div class="border-t border-[#92e1ba]/40 pt-4 mt-4">
+                    <div class="flex flex-col lg:flex-row justify-between items-center gap-3">
+                        <div class="text-[10px] sm:text-[11px] text-gray-600 dark:text-gray-400 text-center lg:text-left">
+                            <i class="fas fa-code mr-1 text-[#237227] text-[10px]"></i>
+                            © 2024 Jack Dev. All rights reserved.
+                        </div>
+                        
+                        <div class="flex space-x-4 sm:space-x-5 text-[10px] sm:text-[11px]">
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Privacy</a>
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Terms</a>
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Support</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="scrollToTop" class="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 bg-gradient-to-r from-[#237227] to-[#519A66] text-white w-8 h-8 sm:w-9 sm:h-9 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-110 hidden items-center justify-center z-50 group">
+                    <i class="fas fa-arrow-up text-xs sm:text-sm group-hover:-translate-y-0.5 transition"></i>
+                </button>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Hamburger Menu JavaScript -->
+    <script>
+        // Mobile Menu Functionality
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.classList.add('menu-open');
+            hamburgerIcon.classList.remove('fa-bars');
+            hamburgerIcon.classList.add('fa-times');
+        }
+        
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            hamburgerIcon.classList.remove('fa-times');
+            hamburgerIcon.classList.add('fa-bars');
+        }
+        
+        hamburgerBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+        
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    </script>
+    
+</body>
+</html>

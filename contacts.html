@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Get in touch with Jack Dev - Professional Full-Stack Developer. Let's discuss your project and create something amazing together.">
+    <meta name="keywords" content="Contact, Django Developer, Hire Django Developer, Web Development">
+    <meta name="author" content="Jack Dev">
+    
+    <title>Contact | Jack Dev - Get in Touch</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#237227',
+                        secondary: '#519A66',
+                        accent: '#FFAA00',
+                        highlight: '#FFD786',
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideInLeft: {
+                            from: { opacity: 0, transform: 'translateX(-50px)' },
+                            to: { opacity: 1, transform: 'translateX(0)' }
+                        },
+                        slideInRight: {
+                            from: { opacity: 0, transform: 'translateX(50px)' },
+                            to: { opacity: 1, transform: 'translateX(0)' }
+                        },
+                        fadeInUp: {
+                            from: { opacity: 0, transform: 'translateY(30px)' },
+                            to: { opacity: 1, transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, 
+                #e7f4ec 0%, 
+                #faf8f6 25%,
+                #e7f4ec 50%,
+                #b0eacd 75%,
+                #92e1ba 100%
+            );
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Decorative Lines */
+        body::before {
+            content: '';
+            position: fixed;
+            left: 5%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #92e1ba, #92e1ba, transparent);
+            opacity: 0.6;
+            z-index: 1;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            right: 5%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #92e1ba, #92e1ba, transparent);
+            opacity: 0.6;
+            z-index: 1;
+        }
+        
+        .middle-line {
+            position: fixed;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #92e1ba, #92e1ba, #92e1ba, transparent);
+            opacity: 0.4;
+            transform: translateX(-50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Main Content Wrapper */
+        .main-wrapper {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(0px);
+            min-height: 100vh;
+        }
+        
+        .dark .main-wrapper {
+            background: rgba(17, 24, 39, 0.88);
+        }
+        
+        .dark body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        /* Premium Card */
+        .premium-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(35, 114, 39, 0.1);
+        }
+        
+        .premium-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -12px rgba(35, 114, 39, 0.15);
+            border-color: rgba(35, 114, 39, 0.2);
+        }
+        
+        .dark .premium-card {
+            background: rgba(31, 41, 55, 0.95);
+        }
+        
+        /* Form Input Styles */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .dark .form-input {
+            background: #1f2937;
+            border-color: #374151;
+            color: #f3f4f6;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #237227;
+            box-shadow: 0 0 0 3px rgba(35, 114, 39, 0.1);
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            background: white;
+            resize: vertical;
+        }
+        
+        .dark .form-textarea {
+            background: #1f2937;
+            border-color: #374151;
+            color: #f3f4f6;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #237227;
+            box-shadow: 0 0 0 3px rgba(35, 114, 39, 0.1);
+        }
+        
+        /* Contact Info Card Hover */
+        .contact-info-card {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-card:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, rgba(35, 114, 39, 0.1), rgba(81, 154, 102, 0.05));
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #e7f4ec;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #237227, #519A66);
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            body::before,
+            body::after,
+            .middle-line {
+                opacity: 0.2;
+            }
+        }
+        
+        /* Map Placeholder Animation */
+        .map-placeholder {
+            background: linear-gradient(135deg, #e7f4ec, #b0eacd);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .map-placeholder {
+            background: linear-gradient(135deg, #1f2937, #374151);
+        }
+        
+        .map-placeholder:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Lines -->
+    <div class="middle-line"></div>
+    
+    <!-- Main Content -->
+    <div class="main-wrapper min-h-screen">
+        
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16 md:h-20">
+                    <a href="index.html" class="flex items-center space-x-2 group">
+                        <div class="w-10 h-10 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-code text-[#FFD786] text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-[#237227] to-[#FFAA00] bg-clip-text text-transparent">DevPortfolio</span>
+                    </a>
+                    
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition">Home</a>
+                        <a href="about.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition">About</a>
+                        <a href="skills.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition">Skills</a>
+                        <a href="projects.html" class="text-gray-700 dark:text-gray-300 hover:text-[#237227] transition">Projects</a>
+                        <a href="contact.html" class="text-[#237227] font-semibold border-b-2 border-[#FFAA00] pb-0.5">Contact</a>
+                    </div>
+                    
+                    <button id="themeToggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:scale-110 transition">
+                        <i id="themeIcon" class="fas fa-moon text-gray-700 dark:text-gray-300 text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Contact Hero Section -->
+        <section class="pt-28 md:pt-32 pb-12 px-4">
+            <div class="container mx-auto max-w-6xl text-center" data-aos="fade-up">
+                <span class="inline-block px-4 py-1 rounded-full bg-[#237227]/10 text-[#237227] text-sm font-semibold mb-3">Get in Touch</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white mb-4">Let's Start a <span class="gradient-text">Conversation</span></h1>
+                <div class="w-24 h-1 bg-gradient-to-r from-[#237227] to-[#FFAA00] mx-auto mb-6"></div>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
+                    Have a project in mind? I'd love to hear about it. Reach out to me and let's create something amazing together.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Contact Form & Info Section -->
+        <section class="py-12 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    
+                    <!-- Contact Form -->
+                    <div data-aos="fade-right">
+                        <div class="premium-card p-6 md:p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Send a Message</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">Fill out the form below and I'll get back to you within 24 hours.</p>
+                            
+                            <form id="contactForm" class="space-y-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Name <span class="text-red-500">*</span></label>
+                                    <input type="text" id="name" name="name" required 
+                                        class="form-input"
+                                        placeholder="John Doe">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address <span class="text-red-500">*</span></label>
+                                    <input type="email" id="email" name="email" required 
+                                        class="form-input"
+                                        placeholder="john@example.com">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                                    <input type="text" id="subject" name="subject" 
+                                        class="form-input"
+                                        placeholder="Project Inquiry / Collaboration">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message <span class="text-red-500">*</span></label>
+                                    <textarea id="message" name="message" rows="5" required 
+                                        class="form-textarea"
+                                        placeholder="Tell me about your project..."></textarea>
+                                </div>
+                                
+                                <button type="submit" 
+                                    class="w-full btn-premium px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 transform hover:scale-105">
+                                    <i class="fas fa-paper-plane mr-2"></i> Send Message
+                                </button>
+                            </form>
+                            
+                            <div id="formSuccess" class="hidden mt-4 p-3 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-lg text-sm text-center">
+                                <i class="fas fa-check-circle mr-1"></i> Thank you! Your message has been sent successfully.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div data-aos="fade-left">
+                        <div class="premium-card p-6 md:p-8 mb-6">
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Contact Information</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">Feel free to reach out through any of these channels.</p>
+                            
+                            <div class="space-y-4">
+                                <div class="contact-info-card flex items-start space-x-4 p-3 rounded-xl">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 dark:text-white">Location</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Dhaka, Bangladesh</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-500">Available for remote work worldwide</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-card flex items-start space-x-4 p-3 rounded-xl">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 dark:text-white">Email</h3>
+                                        <a href="mailto:jackdev@example.com" class="text-sm text-[#237227] dark:text-[#92e1ba] hover:underline">jackdev@example.com</a>
+                                        <p class="text-xs text-gray-500 dark:text-gray-500">I respond within 24 hours</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-card flex items-start space-x-4 p-3 rounded-xl">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone-alt text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 dark:text-white">Phone / WhatsApp</h3>
+                                        <a href="tel:+8801234567890" class="text-sm text-[#237227] dark:text-[#92e1ba] hover:underline">+880 1234 567890</a>
+                                        <p class="text-xs text-gray-500 dark:text-gray-500">Mon-Fri, 9am - 6pm GMT+6</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="premium-card p-6 md:p-8">
+                            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Connect on Social Media</h2>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] hover:text-white transition-all duration-300 group">
+                                    <i class="fab fa-github text-xl text-gray-700 dark:text-gray-300 group-hover:text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] hover:text-white transition-all duration-300 group">
+                                    <i class="fab fa-linkedin-in text-xl text-gray-700 dark:text-gray-300 group-hover:text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] hover:text-white transition-all duration-300 group">
+                                    <i class="fab fa-twitter text-xl text-gray-700 dark:text-gray-300 group-hover:text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] hover:text-white transition-all duration-300 group">
+                                    <i class="fab fa-dev text-xl text-gray-700 dark:text-gray-300 group-hover:text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] hover:text-white transition-all duration-300 group">
+                                    <i class="fab fa-stack-overflow text-xl text-gray-700 dark:text-gray-300 group-hover:text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Map Section -->
+        <section class="py-12 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="map-placeholder rounded-2xl overflow-hidden shadow-xl" data-aos="fade-up">
+                    <div class="relative h-80 bg-gradient-to-br from-[#e7f4ec] to-[#b0eacd] dark:from-gray-800 dark:to-gray-700 flex items-center justify-center">
+                        <!-- Google Maps Placeholder / Static Map Image -->
+                        <img src="https://placehold.co/1200x400/e7f4ec/237227?text=Map+Location+-+Dhaka%2C+Bangladesh" 
+                             alt="Location Map" 
+                             class="w-full h-full object-cover opacity-80">
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-map-pin text-4xl text-white drop-shadow-lg"></i>
+                                <p class="text-white font-semibold mt-2 drop-shadow">Dhaka, Bangladesh</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section class="py-12 px-4">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">Frequently Asked Questions</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-[#237227] to-[#FFAA00] mx-auto"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="premium-card p-5" data-aos="fade-up">
+                        <i class="fas fa-clock text-2xl text-[#237227] mb-3"></i>
+                        <h3 class="font-bold text-gray-800 dark:text-white mb-2">What is your typical response time?</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">I usually respond within 24 hours to all inquiries. For urgent matters, feel free to call or WhatsApp me.</p>
+                    </div>
+                    
+                    <div class="premium-card p-5" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-globe text-2xl text-[#237227] mb-3"></i>
+                        <h3 class="font-bold text-gray-800 dark:text-white mb-2">Do you work remotely?</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Yes! I work with clients worldwide. I'm comfortable with remote collaboration tools like Zoom, Slack, and Trello.</p>
+                    </div>
+                    
+                    <div class="premium-card p-5" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-dollar-sign text-2xl text-[#237227] mb-3"></i>
+                        <h3 class="font-bold text-gray-800 dark:text-white mb-2">What are your rates?</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Rates vary based on project scope. I offer both hourly and fixed-price contracts. Let's discuss your needs!</p>
+                    </div>
+                    
+                    <div class="premium-card p-5" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-file-contract text-2xl text-[#237227] mb-3"></i>
+                        <h3 class="font-bold text-gray-800 dark:text-white mb-2">Do you sign NDAs?</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Absolutely! I respect client confidentiality and am happy to sign NDAs before discussing project details.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-900 border-t border-[#92e1ba]/30 mt-12">
+            <div class="container mx-auto px-6 py-10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                    <!-- Brand -->
+                    <div>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-8 h-8 bg-gradient-to-br from-[#237227] to-[#519A66] rounded-lg flex items-center justify-center">
+                                <i class="fas fa-code text-[#FFD786] text-sm"></i>
+                            </div>
+                            <span class="font-bold text-lg"><span class="text-[#237227]">Dev</span><span class="text-gray-800 dark:text-white">Portfolio</span></span>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Creating exceptional digital experiences with Django & modern web technologies.</p>
+                    </div>
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="font-semibold text-gray-800 dark:text-white mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="index.html" class="text-sm text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Home</a></li>
+                            <li><a href="about.html" class="text-sm text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">About</a></li>
+                            <li><a href="projects.html" class="text-sm text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Projects</a></li>
+                            <li><a href="contact.html" class="text-sm text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    <!-- Services -->
+                    <div>
+                        <h4 class="font-semibold text-gray-800 dark:text-white mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Django Development</a></li>
+                            <li><a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">API Development</a></li>
+                            <li><a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Responsive Design</a></li>
+                            <li><a href="#" class="text-sm text-gray-600 dark:text-gray-400 hover:text-[#237227] transition">Consultation</a></li>
+                        </ul>
+                    </div>
+                    <!-- Connect -->
+                    <div>
+                        <h4 class="font-semibold text-gray-800 dark:text-white mb-4">Connect</h4>
+                        <div class="flex space-x-4 mb-4">
+                            <a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] hover:text-white transition"><i class="fab fa-github text-sm"></i></a>
+                            <a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] hover:text-white transition"><i class="fab fa-linkedin-in text-sm"></i></a>
+                            <a href="#" class="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#237227] hover:text-white transition"><i class="fab fa-twitter text-sm"></i></a>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">contact@devportfolio.com</p>
+                    </div>
+                </div>
+                <div class="border-t border-[#92e1ba]/30 pt-6 text-center">
+                    <p class="text-xs text-gray-600 dark:text-gray-400">© 2024 Jack Dev. All rights reserved. | Built with Django & TailwindCSS</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+        
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Validate
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Show success message
+                formSuccess.classList.remove('hidden');
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formSuccess.classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        });
+        
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
